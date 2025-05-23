@@ -1,0 +1,22 @@
+# Node
+node_modules/
+npm-debug.log
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# Build
+backend/dist/
+frontend/build/
+
+# SQLite
+*.db
+*.sqlite
