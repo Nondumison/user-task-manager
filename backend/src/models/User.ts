@@ -4,14 +4,36 @@ import { Task } from "./Task";
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;  // Note the ! to tell TypeScript we'll initialize this
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column()
-  email: string;
+  email!: string;
 
   @OneToMany(() => Task, (task) => task.user)
-  tasks: Task[];
+  tasks!: Task[];
 }
+
+
+
+
+
+// import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+// import { Task } from "./Task";
+
+// @Entity()
+// export class User {
+//   @PrimaryGeneratedColumn()
+//   id: number;
+
+//   @Column()
+//   name: string;
+
+//   @Column()
+//   email: string;
+
+//   @OneToMany(() => Task, (task) => task.user)
+//   tasks: Task[];
+// }

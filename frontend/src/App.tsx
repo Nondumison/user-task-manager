@@ -1,31 +1,64 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import UserForm from './components/UserForm';
-import UserList from './components/UserList';
-import TaskList from './components/TaskList';
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import UserForm from "./components/UserForm";
+import UserList from "./components/UserList";
+import TaskList from "./components/TaskList";
+import WeatherWidget from "./components/WeatherWidget";
+import Header from "./components/Header";
 
 const App: React.FC = () => {
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
   const [refreshUsers, setRefreshUsers] = useState(false);
 
   const handleUserCreated = () => {
-    setRefreshUsers(!refreshUsers);
+    setRefreshUsers((prev) => !prev);
+  };
+
+  const handleUserDeleted = () => {
+    setRefreshUsers((prev) => !prev);
+    setSelectedUserId(null);
+  };
+
+  const handleBack = () => {
+    setSelectedUserId(null);
   };
 
   return (
-    <div className="container mt-4">
-      <h1 className="mb-4">User Task Manager</h1>
-      <div className="row">
-        <div className="col-md-6">
-          <UserForm onUserCreated={handleUserCreated} />
-          <UserList onSelectUser={setSelectedUserId} />
-        </div>
-        <div className="col-md-6">
-          {selectedUserId ? (
-            <TaskList userId={selectedUserId} />
-          ) : (
-            <div className="alert alert-info">Select a user to view their tasks</div>
-          )}
+    <div className="app-container">
+      <Header />
+
+      <div className="container-fluid main-content">
+        <div className="row">
+          <div className="col-md-3 sidebar">
+            <div className="sidebar-content p-3">
+              <WeatherWidget />
+              <div className="mt-4">
+                <UserForm onUserCreated={handleUserCreated} />
+              </div>
+              <div className="mt-4">
+                <h5>Team Members</h5>
+                <UserList
+                  onSelectUser={setSelectedUserId}
+                  refresh={refreshUsers}
+                  onUserDeleted={handleUserDeleted}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-9 main-board">
+            {selectedUserId ? (
+              <TaskList userId={selectedUserId} onBack={handleBack} />
+            ) : (
+              <div className="welcome-message">
+                <h2>Welcome to TaskFlow</h2>
+                <p>
+                  Select a team member to view their tasks or create a new one
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

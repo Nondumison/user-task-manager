@@ -16,3 +16,11 @@ export const getUserById = async (id: number): Promise<User | null> => {
   const userRepository = AppDataSource.getRepository(User);
   return await userRepository.findOneBy({ id });
 };
+
+export const deleteUser = async (id: number): Promise<void> => {
+  const userRepository = AppDataSource.getRepository(User);
+  const result = await userRepository.delete(id);
+  if (result.affected === 0) {
+    throw new Error("User not found");
+  }
+};

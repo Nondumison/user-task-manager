@@ -1,38 +1,97 @@
-.App {
-  text-align: center;
+:root {
+  --primary-color: #5c6bc0;
+  --secondary-color: #3949ab;
+  --accent-color: #ff7043;
+  --light-bg: #f5f5f5;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #3949ab;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+.sidebar {
+  background-color: #3949ab;
+  border-right: 1px solid #e0e0e0;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar-content {
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+}
+
+.main-board {
+  padding: 20px;
+  background-color: var(--light-bg);
+  min-height: 100vh;
+}
+
+.task-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-card {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 4px solid var(--primary-color);
+}
+
+.user-card:hover {
+  background-color: #f0f0f0;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.weather-widget {
+  /* background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  box-shadow: var(--card-shadow); */
+  background-color: #0bb9d4;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.status-pending {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.status-completed {
+  background-color: #e8f5e9;
+  color: #2e7d32;
 }

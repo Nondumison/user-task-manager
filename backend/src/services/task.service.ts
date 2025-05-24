@@ -23,14 +23,17 @@ export const createTask = async (
 
 export const getUserTasks = async (userId: number): Promise<Task[]> => {
   const taskRepository = AppDataSource.getRepository(Task);
-  //const userRepository = AppDataSource.getRepository(User);
-  // const user = await userRepository.findOneBy({id: userId});
-  // if(!user){
-  //     throw new Error('User not found');
-  // }
-
+  
   return await taskRepository.find({
     where: { user: { id: userId } },
     relations: ["user"],
   });
+};
+
+export const deleteTask = async (id: number): Promise<void> => {
+  const taskRepository = AppDataSource.getRepository(Task);
+  const result = await taskRepository.delete(id);
+  if (result.affected === 0) {
+    throw new Error("Task not found");
+  }
 };

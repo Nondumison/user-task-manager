@@ -4,17 +4,39 @@ import { User } from "./User";
 @Entity()
 export class Task {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  title: string;
+  title!: string;
 
   @Column()
-  description: string;
+  description!: string;
 
   @Column({ default: false })
-  completed: boolean;
+  completed!: boolean;
 
   @ManyToOne(() => User, (user) => user.tasks)
-  user: User;
+  user!: User;
 }
+
+
+// import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+// import { User } from "./User";
+
+// @Entity()
+// export class Task {
+//   @PrimaryGeneratedColumn()
+//   id: number;
+
+//   @Column()
+//   title: string;
+
+//   @Column()
+//   description: string;
+
+//   @Column({ default: false })
+//   completed: boolean;
+
+//   @ManyToOne(() => User, (user) => user.tasks)
+//   user: User;
+// }
