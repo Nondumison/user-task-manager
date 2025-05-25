@@ -7,5 +7,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use('/api', router);
+app.get('/', (_req, res) => {
+    res.status(200).send('OK');
+  });
 
 export default app;

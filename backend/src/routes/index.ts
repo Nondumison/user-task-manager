@@ -4,6 +4,10 @@ import * as taskController from '../controllers/task.controller';
 
 const router = Router();
 
+router.get('/health', (_req, res) => {
+    res.status(200).send('Healthy');
+  });
+
 router.get('/users', userController.getUsers);
 router.post('/users', userController.createUser);
 
