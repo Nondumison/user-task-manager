@@ -166,19 +166,19 @@ const TaskList: React.FC<TaskListProps> = ({ userId, onBack }) => {
           </div>
         </div>
 
-        {/* <div className="col-md-4">
+        <div className="col-md-4">
           <div className="column-header bg-warning text-white p-2 rounded-top">
             <h5>In Progress</h5>
           </div>
           <div className="column-content">
             
             <div className="text-center mt-3 text-muted">
-              <small>Add status field to tasks to use this column</small>
+              <small>I need to add status field to tasks to use this column</small>
             </div>
           </div>
-        </div> */}
+        </div>
 
-        {/* Done Column */}
+      
         <div className="col-md-4">
           <div className="column-header bg-success text-white p-2 rounded-top">
             <h5>Done</h5>

@@ -47,12 +47,12 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          <div className="col-md-9 main-board">
+          <div className="col-md-9 main-board" style={{backgroundColor:"#d9c39e"}}>
             {selectedUserId ? (
               <TaskList userId={selectedUserId} onBack={handleBack} />
             ) : (
               <div className="welcome-message">
-                <h2>Welcome to TaskFlow</h2>
+                <h2>Welcome to Task Manager</h2>
                 <p>
                   Select a team member to view their tasks or create a new one
                 </p>

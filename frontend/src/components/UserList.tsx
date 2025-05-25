@@ -66,10 +66,10 @@ const UserList: React.FC<UserListProps> = ({
                   cursor: "pointer",
                   color: "red",
                   fontWeight: "bold",
-                  marginLeft: "0.5rem",
+                  marginLeft: "0.1rem",
                 }}
               >
-                &times;
+                x
               </span>
             </div>
           </div>
