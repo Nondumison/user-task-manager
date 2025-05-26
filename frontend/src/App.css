@@ -65,10 +65,6 @@ body {
   border-color: var(--secondary-color);
 }
 
-/* .btn-primary:hover {
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
-} */
 .btn-primary:hover {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
@@ -81,7 +77,6 @@ body {
     #e0823a
   );
   box-shadow: var(--card-shadow);
-  /* background-color: #3949ab; */
 }
 
 .status-badge {

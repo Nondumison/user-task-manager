@@ -1,19 +1,3 @@
-# FROM node:18-alpine
-
-# WORKDIR /app
-
-# COPY package*.json ./
-# COPY tsconfig.json ./
-
-# RUN npm install
-
-# COPY . .
-
-# RUN npm run build
-
-# EXPOSE 3001
-
-# CMD ["npm", "start"]
 
 FROM node:18-alpine AS builder
 
@@ -26,7 +10,6 @@ RUN npm install
 
 COPY src ./src
 
-# Build and verify
 RUN npm run build && \
     ls -la /app/dist && \
     [ -f /app/dist/server.js ] || (echo "Build failed" && exit 1)
