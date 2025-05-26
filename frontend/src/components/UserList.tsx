@@ -18,6 +18,10 @@ const UserList: React.FC<UserListProps> = ({
   const [error, setError] = useState("");
 
   useEffect(() => {
+    getUsers().then(data => console.log("Users from backend:", data));
+  }, []);
+  
+  useEffect(() => {
     const fetchUsers = async () => {
       try {
         const data = await getUsers();

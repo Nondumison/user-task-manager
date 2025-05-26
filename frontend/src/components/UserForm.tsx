@@ -7,6 +7,7 @@ const UserForm: React.FC<{ onUserCreated: () => void }> = ({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +34,9 @@ const UserForm: React.FC<{ onUserCreated: () => void }> = ({
       setName("");
       setEmail("");
       setError("");
+      setSuccess(true);
       onUserCreated();
+      clearSuccessAfterTimeout();
     } catch (err) {
       setError("Failed to create user");
       clearErrorAfterTimeout();
@@ -45,11 +48,21 @@ const UserForm: React.FC<{ onUserCreated: () => void }> = ({
       setError("");
     }, 3000);
   };
+  const clearSuccessAfterTimeout = () => {
+    setTimeout(() => {
+      setSuccess(false);
+    }, 3000);
+  };
 
   return (
     <div className="card mb-4" style={{ backgroundColor: "#f2e3c9" }}>
       <div className="card-body">
         <h5 className="card-title">Add New User</h5>
+        {success && (
+    <div style={{ color: "green", marginBottom: "1rem" }}>
+      User created successfully
+    </div>
+  )}
         {error && (
           <div style={{ color: "red", marginBottom: "1rem" }}>{error}</div>
         )}
