@@ -4,7 +4,7 @@ A full-stack application built with React, Node.js, Express, and TypeScript. It 
 
 ## 🌐 Live Demo
 
-🔗 [Coming soon – will be hosted on Vercel (frontend) and Render (backend)](https://your-live-demo-link.com)
+🔗 [Live Demo](https://user-task-manager-bxpoiw9qa-nondumisos-projects-b740904b.vercel.app/)
 
 ## Tech Stack
 
@@ -24,7 +24,11 @@ A full-stack application built with React, Node.js, Express, and TypeScript. It 
 
 ## Screenshots
 
-Replace these once the UI is ready.
+###  User List
+![User List Screenshot](frontend/public/task2.jpeg)
+
+###  Task Manager
+![Task Manager Screenshot](frontend/public/task-image.jpeg)
 
 ## Getting Started
 
