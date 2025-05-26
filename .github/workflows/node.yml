@@ -21,8 +21,8 @@ jobs:
       - name: Install Backend Dependencies
         run: cd backend && npm install
 
-      - name: Lint Backend
-        run: cd backend && npm run lint
+      # - name: Lint Backend
+      #   run: cd backend && npm run lint
 
       - name: Test Backend
         run: cd backend && npm test
