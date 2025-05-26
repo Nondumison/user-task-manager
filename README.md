@@ -4,7 +4,7 @@ A full-stack application built with React, Node.js, Express, and TypeScript. It 
 
 ## 🌐 Live Demo
 
-🔗 [Live Demo](https://user-task-manager-bxpoiw9qa-nondumisos-projects-b740904b.vercel.app/)
+🔗 [Live Demo](https://user-task-manager-git-main-nondumisos-projects-b740904b.vercel.app/)
 
 ## Tech Stack
 
