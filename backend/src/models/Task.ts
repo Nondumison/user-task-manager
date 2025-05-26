@@ -14,6 +14,9 @@ export class Task {
 
   @Column({ default: false })
   completed!: boolean;
+  
+  @Column({ default: "todo" })
+  status!: "todo" | "in-progress" | "done";
 
   @ManyToOne(() => User, (user) => user.tasks)
   user!: User;
