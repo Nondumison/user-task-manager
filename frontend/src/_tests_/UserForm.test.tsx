@@ -26,6 +26,6 @@ describe('UserForm', () => {
 
     expect(await screen.findByText('User created successfully')).toBeInTheDocument();
     expect(mockedCreateUser).toHaveBeenCalledWith({ name: 'John', email: 'john@test.com' });
-    expect(mockSubmit).toHaveBeenCalled(); // if your component calls this prop
+    expect(mockSubmit).toHaveBeenCalled(); 
   });
 });

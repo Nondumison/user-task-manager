@@ -8,7 +8,7 @@ const UserForm: React.FC<{ onUserCreated: () => void }> = ({
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -59,10 +59,10 @@ const UserForm: React.FC<{ onUserCreated: () => void }> = ({
       <div className="card-body">
         <h5 className="card-title">Add New User</h5>
         {success && (
-    <div style={{ color: "green", marginBottom: "1rem" }}>
-      User created successfully
-    </div>
-  )}
+          <div style={{ color: "green", marginBottom: "1rem" }}>
+            User created successfully
+          </div>
+        )}
         {error && (
           <div style={{ color: "red", marginBottom: "1rem" }}>{error}</div>
         )}

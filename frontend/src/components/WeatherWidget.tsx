@@ -49,7 +49,7 @@ const WeatherWidget: React.FC = () => {
           />
         )}
         <div>
-          <h2 className="mb-0">{weather?.main.temp}°C</h2>
+          <h4 className="mb-0">{weather?.main.temp}°C</h4>
           <small>{weather?.weather[0].description}</small>
         </div>
       </div>

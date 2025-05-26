@@ -63,7 +63,17 @@ const TaskList: React.FC<TaskListProps> = ({ userId, onBack }) => {
   const toggleTaskStatus = (taskId: number) => {
     setTasks(
       tasks.map((task) =>
-        task.id === taskId ? { ...task, completed: !task.completed } : task
+        task.id === taskId
+          ? {
+              ...task,
+              status:
+                task.status === "todo"
+                  ? "in-progress"
+                  : task.status === "in-progress"
+                  ? "done"
+                  : "todo",
+            }
+          : task
       )
     );
   };
@@ -131,7 +141,7 @@ const TaskList: React.FC<TaskListProps> = ({ userId, onBack }) => {
           </div>
           <div className="column-content">
             {tasks
-              .filter((task) => !task.completed)
+              .filter((task) => task.status === "todo")
               .map((task) => (
                 <div key={task.id} className="task-card card mb-3">
                   <div className="card-body">
@@ -171,21 +181,45 @@ const TaskList: React.FC<TaskListProps> = ({ userId, onBack }) => {
             <h5>In Progress</h5>
           </div>
           <div className="column-content">
-            
-            <div className="text-center mt-3 text-muted">
-              <small>I need to add status field to tasks to use this column</small>
-            </div>
+            {tasks
+              .filter((task) => task.status === "in-progress")
+              .map((task) => (
+                <div key={task.id} className="task-card card mb-3">
+                  <div className="card-body">
+                    <div className="d-flex justify-content-between">
+                      <h5>{task.title}</h5>
+                      <button
+                        className="btn btn-sm btn-outline-danger"
+                        onClick={() => handleDeleteTask(task.id)}
+                      >
+                        <i className="bi bi-trash"></i>
+                      </button>
+                    </div>
+                    <p>{task.description}</p>
+                    <div className="d-flex justify-content-between align-items-center">
+                      <span className="status-badge status-in-progress">
+                        In Progress
+                      </span>
+                      <button
+                        className="btn btn-sm btn-outline-primary"
+                        onClick={() => toggleTaskStatus(task.id)}
+                      >
+                        Move Forward
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
           </div>
         </div>
 
-      
         <div className="col-md-4">
           <div className="column-header bg-success text-white p-2 rounded-top">
             <h5>Done</h5>
           </div>
           <div className="column-content">
             {tasks
-              .filter((task) => task.completed)
+              .filter((task) => task.status === "done")
               .map((task) => (
                 <div key={task.id} className="task-card card mb-3">
                   <div className="card-body">

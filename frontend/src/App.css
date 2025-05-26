@@ -71,11 +71,7 @@ body {
 }
 
 .weather-widget {
-  background: linear-gradient(
-    135deg,
-    #3949ab,
-    #e0823a
-  );
+  background: linear-gradient(135deg, #3949ab, #e0823a);
   box-shadow: var(--card-shadow);
 }
 
