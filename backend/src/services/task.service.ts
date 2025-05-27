@@ -27,6 +27,7 @@ export const getUserTasks = async (userId: number): Promise<Task[]> => {
   return await taskRepository.find({
     where: { user: { id: userId } },
     relations: ["user"],
+    select: ["id", "title", "description", "completed", "status"] 
   });
 };
 
