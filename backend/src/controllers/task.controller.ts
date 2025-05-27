@@ -1,17 +1,38 @@
 import { Request, Response } from "express";
 import * as taskService from "../services/task.service";
 
+// export const createTask = async (req: Request, res: Response) => {
+//   try {
+//     const userId = parseInt(req.params.id);
+//     const { title, description } = req.body;
+
+//     if (!title) {
+//       res.status(400).json({ error: "Title is required" });
+//       return;
+//     }
+
+//     const task = await taskService.createTask(userId, { title, description });
+//     res.status(201).json(task);
+//   } catch (error: any) {
+//     if (error.message === "User not found") {
+//       res.status(404).json({ error: error.message });
+//       return;
+//     }
+//     res.status(500).json({ error: "Failed to create task" });
+//   }
+// };
+
 export const createTask = async (req: Request, res: Response) => {
   try {
     const userId = parseInt(req.params.id);
-    const { title, description } = req.body;
+    const { title, description, status } = req.body;  // add status here
 
     if (!title) {
       res.status(400).json({ error: "Title is required" });
       return;
     }
 
-    const task = await taskService.createTask(userId, { title, description });
+    const task = await taskService.createTask(userId, { title, description, status });  // pass status here
     res.status(201).json(task);
   } catch (error: any) {
     if (error.message === "User not found") {
