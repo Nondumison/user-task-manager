@@ -30,7 +30,7 @@ const App: React.FC = () => {
 
       <div className="container-fluid main-content">
         <div className="row">
-          <div className="col-md-3 sidebar">
+          <div className="col-12 col-md-3 order-0">
             <div className="sidebar-content p-3">
               <WeatherWidget />
               <div className="mt-4">
@@ -47,7 +47,10 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          <div className="col-md-9 main-board" style={{backgroundColor:"#d9c39e"}}>
+          <div
+            className=" col-12 col-md-9 order-1 order-md-2 main-board"
+            style={{ backgroundColor: "#d9c39e" }}
+          >
             {selectedUserId ? (
               <TaskList userId={selectedUserId} onBack={handleBack} />
             ) : (

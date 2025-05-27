@@ -1,38 +1,21 @@
 import { Request, Response } from "express";
 import * as taskService from "../services/task.service";
 
-// export const createTask = async (req: Request, res: Response) => {
-//   try {
-//     const userId = parseInt(req.params.id);
-//     const { title, description } = req.body;
-
-//     if (!title) {
-//       res.status(400).json({ error: "Title is required" });
-//       return;
-//     }
-
-//     const task = await taskService.createTask(userId, { title, description });
-//     res.status(201).json(task);
-//   } catch (error: any) {
-//     if (error.message === "User not found") {
-//       res.status(404).json({ error: error.message });
-//       return;
-//     }
-//     res.status(500).json({ error: "Failed to create task" });
-//   }
-// };
-
 export const createTask = async (req: Request, res: Response) => {
   try {
     const userId = parseInt(req.params.id);
-    const { title, description, status } = req.body;  // add status here
+    const { title, description, status } = req.body;
 
     if (!title) {
       res.status(400).json({ error: "Title is required" });
       return;
     }
 
-    const task = await taskService.createTask(userId, { title, description, status });  // pass status here
+    const task = await taskService.createTask(userId, {
+      title,
+      description,
+      status,
+    }); 
     res.status(201).json(task);
   } catch (error: any) {
     if (error.message === "User not found") {
@@ -43,28 +26,17 @@ export const createTask = async (req: Request, res: Response) => {
   }
 };
 
-// export const getUserTasks = async (req: Request, res: Response) => {
-//   try {
-//     const userId = parseInt(req.params.id);
-//     const tasks = await taskService.getUserTasks(userId);
-//     res.json(tasks);
-//   } catch (error) {
-//     res.status(500).json({ error: "Failed to fetch tasks" });
-//   }
-// };
-
 export const getUserTasks = async (req: Request, res: Response) => {
   try {
     const userId = parseInt(req.params.id);
     const tasks = await taskService.getUserTasks(userId);
 
-    // Optional: explicitly return all fields
     const response = tasks.map((task) => ({
       id: task.id,
       title: task.title,
       description: task.description,
       completed: task.completed,
-      status: task.status, 
+      status: task.status,
       user: {
         id: task.user.id,
         name: task.user.name,

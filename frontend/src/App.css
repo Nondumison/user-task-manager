@@ -90,33 +90,14 @@ body {
   background-color: #e8f5e9;
   color: #07f513;
 }
-/* Add this to your App.css */
-@media (max-width: 768px) {
-  .sidebar {
-    order: 2;
+
+@media (max-width: 767px) {
+  .task-card .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
   }
   
-  .main-board {
-    order: 1;
-  }
-  
-  .btn-primary {
-    padding: 8px 12px;
-    font-size: 14px;
-  }
-  
-  .task-board {
-    padding: 10px;
-  }
-  
-  .column-content {
-    overflow-x: auto;
-    white-space: nowrap;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .task-card {
-    min-width: 280px;
+  .status-badge {
+    font-size: 0.8rem;
   }
 }

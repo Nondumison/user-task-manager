@@ -32,33 +32,13 @@ const TaskList: React.FC<TaskListProps> = ({ userId, onBack }) => {
     fetchTasks();
   }, [userId]);
 
-  // const handleAddTask = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   if (!newTaskTitle) {
-  //     setError("Title is required");
-  //     return;
-  //   }
-
-  //   try {
-  //     const task = await createTask(userId, {
-  //       title: newTaskTitle,
-  //       description: newTaskDescription,
-  //     });
-  //     setTasks([...tasks, task]);
-  //     setNewTaskTitle("");
-  //     setNewTaskDescription("");
-  //     setIsCreating(false);
-  //   } catch (error) {
-  //     setError("Failed to add task");
-  //   }
-  // };
   const handleAddTask = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTaskTitle) {
       setError("Title is required");
       return;
     }
-  
+
     try {
       const task = await createTask(userId, {
         title: newTaskTitle,
@@ -82,35 +62,18 @@ const TaskList: React.FC<TaskListProps> = ({ userId, onBack }) => {
     }
   };
 
-  // const toggleTaskStatus = (taskId: number) => {
-  //   setTasks(
-  //     tasks.map((task) =>
-  //       task.id === taskId
-  //         ? {
-  //             ...task,
-  //             status:
-  //               task.status === "todo"
-  //                 ? "in-progress"
-  //                 : task.status === "in-progress"
-  //                 ? "done"
-  //                 : "todo",
-  //           }
-  //         : task
-  //     )
-  //   );
-  // };
   const toggleTaskStatus = (taskId: number) => {
     setTasks((prevTasks) =>
       prevTasks.map((task) => {
         if (task.id !== taskId) return task;
-  
+
         const nextStatus =
           task.status === "todo"
             ? "in-progress"
             : task.status === "in-progress"
             ? "done"
             : "todo";
-  
+
         return {
           ...task,
           status: nextStatus,
