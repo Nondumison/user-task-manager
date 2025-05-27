@@ -66,7 +66,7 @@
     COPY --from=builder /app/dist ./dist
     
     # 💡 VERY IMPORTANT: Copy the database into the same place it expects to be at runtime
-    COPY --from=builder /app/app/database.sqlite ./app/database.sqlite
+    # COPY --from=builder /app/app/database.sqlite ./app/database.sqlite
     
     EXPOSE 3001
     
