@@ -5,11 +5,11 @@ import { Task } from "../models/Task";
 export const AppDataSource = new DataSource({
   type: "sqlite",
   database: "/app/database.sqlite",
-  synchronize: true,
+  synchronize: false,
   logging: false,
   entities: [User, Task],
   subscribers: [],
-  migrations: [],
+  migrations: ["src/migrations/*.ts"],
 });
 
 export const initializeDatabase = async () => {
