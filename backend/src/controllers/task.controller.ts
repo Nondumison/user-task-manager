@@ -43,11 +43,36 @@ export const createTask = async (req: Request, res: Response) => {
   }
 };
 
+// export const getUserTasks = async (req: Request, res: Response) => {
+//   try {
+//     const userId = parseInt(req.params.id);
+//     const tasks = await taskService.getUserTasks(userId);
+//     res.json(tasks);
+//   } catch (error) {
+//     res.status(500).json({ error: "Failed to fetch tasks" });
+//   }
+// };
+
 export const getUserTasks = async (req: Request, res: Response) => {
   try {
     const userId = parseInt(req.params.id);
     const tasks = await taskService.getUserTasks(userId);
-    res.json(tasks);
+
+    // Optional: explicitly return all fields
+    const response = tasks.map((task) => ({
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      completed: task.completed,
+      status: task.status, 
+      user: {
+        id: task.user.id,
+        name: task.user.name,
+        email: task.user.email,
+      },
+    }));
+
+    res.json(response);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch tasks" });
   }
