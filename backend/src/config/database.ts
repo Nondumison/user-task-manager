@@ -5,7 +5,7 @@ import { Task } from "../models/Task";
 export const AppDataSource = new DataSource({
   type: "sqlite",
   database: "/app/database.sqlite",
-  synchronize: false,
+  synchronize: true,
   logging: false,
   entities: [User, Task],
   subscribers: [],
