@@ -1,3 +1,33 @@
+# version: "3.8"
+
+# services:
+#   backend:
+#     build: ./backend
+#     ports:
+#       - "3001:3001"
+#     environment:
+#       - NODE_ENV=production
+#     volumes:
+#        - sqlite_data:/app/database.sqlite
+#   - /app/node_modules
+#     healthcheck:
+#       test: ["CMD", "curl", "-f", "http://localhost:3001"]
+#       interval: 10s
+#       timeout: 5s
+#       retries: 5
+
+#   frontend:
+#     build:
+#       context: ./frontend
+#       dockerfile: Dockerfile
+#       args:
+#         REACT_APP_API_BASE_URL: "/api"
+#     ports:
+#       - "3000:80"
+#     depends_on:
+#       backend:
+#         condition: service_healthy
+
 version: "3.8"
 
 services:
@@ -8,7 +38,7 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      - ./backend/database.sqlite:/app/database.sqlite
+      - sqlite_data:/app/database.sqlite
       - /app/node_modules
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3001"]
@@ -27,3 +57,6 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+
+volumes:
+  sqlite_data:
