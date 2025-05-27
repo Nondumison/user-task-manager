@@ -5,6 +5,7 @@ import { Task } from "../types";
 interface TaskListProps {
   userId: number;
   onBack: () => void;
+  onTaskModified?: () => void;
 }
 
 const TaskList: React.FC<TaskListProps> = ({ userId, onBack }) => {
@@ -19,6 +20,7 @@ const TaskList: React.FC<TaskListProps> = ({ userId, onBack }) => {
     const fetchTasks = async () => {
       try {
         const response = await getUserTasks(userId);
+        console.log("Fetched tasks:", response);
         setTasks(response);
       } catch (error) {
         setError("Failed to fetch tasks");
@@ -30,19 +32,40 @@ const TaskList: React.FC<TaskListProps> = ({ userId, onBack }) => {
     fetchTasks();
   }, [userId]);
 
+  // const handleAddTask = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (!newTaskTitle) {
+  //     setError("Title is required");
+  //     return;
+  //   }
+
+  //   try {
+  //     const task = await createTask(userId, {
+  //       title: newTaskTitle,
+  //       description: newTaskDescription,
+  //     });
+  //     setTasks([...tasks, task]);
+  //     setNewTaskTitle("");
+  //     setNewTaskDescription("");
+  //     setIsCreating(false);
+  //   } catch (error) {
+  //     setError("Failed to add task");
+  //   }
+  // };
   const handleAddTask = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTaskTitle) {
       setError("Title is required");
       return;
     }
-
+  
     try {
       const task = await createTask(userId, {
         title: newTaskTitle,
         description: newTaskDescription,
+        status: "todo",
       });
-      setTasks([...tasks, task]);
+      setTasks((prev) => [...prev, task]);
       setNewTaskTitle("");
       setNewTaskDescription("");
       setIsCreating(false);
@@ -50,7 +73,6 @@ const TaskList: React.FC<TaskListProps> = ({ userId, onBack }) => {
       setError("Failed to add task");
     }
   };
-
   const handleDeleteTask = async (taskId: number) => {
     try {
       await deleteTask(taskId);
@@ -60,21 +82,41 @@ const TaskList: React.FC<TaskListProps> = ({ userId, onBack }) => {
     }
   };
 
+  // const toggleTaskStatus = (taskId: number) => {
+  //   setTasks(
+  //     tasks.map((task) =>
+  //       task.id === taskId
+  //         ? {
+  //             ...task,
+  //             status:
+  //               task.status === "todo"
+  //                 ? "in-progress"
+  //                 : task.status === "in-progress"
+  //                 ? "done"
+  //                 : "todo",
+  //           }
+  //         : task
+  //     )
+  //   );
+  // };
   const toggleTaskStatus = (taskId: number) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === taskId
-          ? {
-              ...task,
-              status:
-                task.status === "todo"
-                  ? "in-progress"
-                  : task.status === "in-progress"
-                  ? "done"
-                  : "todo",
-            }
-          : task
-      )
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => {
+        if (task.id !== taskId) return task;
+  
+        const nextStatus =
+          task.status === "todo"
+            ? "in-progress"
+            : task.status === "in-progress"
+            ? "done"
+            : "todo";
+  
+        return {
+          ...task,
+          status: nextStatus,
+          completed: nextStatus === "done",
+        };
+      })
     );
   };
 
