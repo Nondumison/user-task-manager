@@ -36,13 +36,9 @@
 
     WORKDIR /app
     
-    # Copy the SQLite database file
-    COPY app/database.sqlite ./app/database.sqlite
-    
-    # Copy config and install deps
+    # Copy package files and install dependencies first (cache-friendly)
     COPY package*.json ./
     COPY tsconfig.json ./
-    
     RUN npm install
     
     # Copy the source code
@@ -53,20 +49,19 @@
         ls -la /app/dist && \
         [ -f /app/dist/server.js ] || (echo "Build failed" && exit 1)
     
-    
     # ---------- Production Stage ----------
     FROM node:18-alpine
     
     WORKDIR /app
     RUN apk add --no-cache curl
     
-    # Copy everything needed from builder
+    # Copy built files and dependencies from builder
     COPY --from=builder /app/package*.json ./
     COPY --from=builder /app/node_modules ./node_modules
     COPY --from=builder /app/dist ./dist
     
-    # 💡 VERY IMPORTANT: Copy the database into the same place it expects to be at runtime
-    # COPY --from=builder /app/app/database.sqlite ./app/database.sqlite
+    # NOTE: We do NOT copy the database file here.
+    # The database file will be provided at runtime via a volume.
     
     EXPOSE 3001
     
