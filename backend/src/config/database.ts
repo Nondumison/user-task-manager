@@ -4,12 +4,12 @@ import { Task } from "../models/Task";
 
 export const AppDataSource = new DataSource({
   type: "sqlite",
-  database: "/app/database.sqlite",
+  database: "./app/database.sqlite",
   synchronize: true,
   logging: false,
   entities: [User, Task],
   subscribers: [],
-  migrations: ["src/migrations/*.ts"],
+  migrations: [],
 });
 
 export const initializeDatabase = async () => {
